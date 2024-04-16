@@ -1,3 +1,3 @@
 # SCG_Benchmarks
 
-Placeholde readme
+Placeholder readme
