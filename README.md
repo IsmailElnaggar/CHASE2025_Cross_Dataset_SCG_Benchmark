@@ -2,5 +2,5 @@
 
 Intructions for Repo reproduction will be detailed here. 
 
-TODO: add metrics functions
-TODO: add example implementation notebook as a guide
+TODO: add metrics functions, add example implementation notebook as a guide, add requirements.txt
+
