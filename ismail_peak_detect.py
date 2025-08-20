@@ -156,7 +156,7 @@ def twod_conv_symmetric(my_cwt, xk, yk):
 
     return my_cwt
 
-def ismail_peak_detector(inputsignal,fs,scales):
+def ie_peak_detector(inputsignal,fs,scales):
     
     #cwt creation
     my_cwt,f = cwt_waveform_maker(inputsignal, scales,wavelet_name="morl",fs=fs,abs_val=True)
@@ -197,38 +197,3 @@ def cwt_step_thresholder(my_cwt,fs,step_duration,overlap_duration,cwt_split,hf=3
         my_cwt[cwt_split:,s:e] = np.where(np.abs(my_cwt[cwt_split:,s:e])>= cwt_threshold_lf,my_cwt[cwt_split:,s:e],0)
 
     return my_cwt   
-
-def split_tuple_list_np(tuple_list):
-    array = np.array(tuple_list)
-    list_A = array[:, 0].tolist()
-    list_B = array[:, 1].tolist()
-    return list_A, list_B
-
-def find_values_between(list_A, list_B):
-    """
-    result i is the index in the list of tuples, the start and end of a peak slope
-    result j is the index of the peak locations, the max points in the peaks 
-    
-    """
-    result = []
-    for i, (a_start, a_end) in enumerate(list_A):
-        for j, b in enumerate(list_B):
-            if a_start < b < a_end:
-                result.append((i, j))
-    return result
-
-def detect_peaks_numpy(inputsignal,  window_size, std_multiplier=0.1, threshold_q=1):
-    
-    timestamps=np.arange(len(inputsignal))
-    filtered = np.zeros_like(inputsignal, dtype=bool)
-    ma = np.convolve(inputsignal, np.ones(window_size)/window_size, mode='same')
-    std = pd.Series(inputsignal).rolling(window=window_size, min_periods=1).std().to_numpy()
-    threshold = ma + std_multiplier * std
-
-    while True:
-        filtered = inputsignal >= threshold
-        if filtered.mean() < threshold_q:
-            break
-        threshold = ma + std_multiplier * (std[~filtered].mean())
-
-    return timestamps[filtered], filtered
