@@ -357,4 +357,5 @@ for p in ["b001","p014"]:
 * So from visual inspection, I see that it is working okay, For some signals it's missing some peaks for various reasons and I think this could be maybe improved by feeding the signal in chunks at a time instead of the entire signal at once because of some of the thresholding done to the CWT might minimize some sections of the signal based on energies present earlier or later in the signal.
 * There's lot of room for improvement of this method. The filtering we apply to the CWT could be improved a lot without placing fixed time windows on our signal. I guess that could be a new paper or idea in itself to try to improve upon this method.
 * This is an example of how to use the method described in our paper! Hope you found this tutorial helpful. If you have any additional questions please email Ismail Elnaggar at imelna@utu.fi
+* Small note: In the IEEE version of the document on the website view there is a typo in equation 2.8 (there is an extra f super scripted at the end of the equation), it is not present in the pdf version of the manuscript. I don't know how that typo happened. 
 
