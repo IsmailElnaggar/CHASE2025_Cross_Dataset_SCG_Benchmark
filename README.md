@@ -358,7 +358,3 @@ for p in ["b001","p014"]:
 * There's lot of room for improvement of this method. The filtering we apply to the CWT could be improved a lot without placing fixed time windows on our signal. I guess that could be a new paper or idea in itself to try to improve upon this method.
 * This is an example of how to use the method described in our paper! Hope you found this tutorial helpful. If you have any additional questions please email Ismail Elnaggar at imelna@utu.fi
 
-
-```python
-
-```
