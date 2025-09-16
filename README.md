@@ -334,8 +334,6 @@ for p in ["b001","p014"]:
     print("True ECG HR for 10 second segment: ",np.mean(bpm))
 ```
 
-    C:\Users\imelna\anaconda\envs\emgEnv\AS_Notebooks\Open_data_2024\Peak_Detection_Testing\github_test\svmd_ismail.py:71: RuntimeWarning: divide by zero encountered in double_scalars
-      if np.linalg.norm(new_mode - mode) / np.linalg.norm(mode) < tol:
     
 
 
@@ -345,9 +343,6 @@ for p in ["b001","p014"]:
     Predicted HR for 10 second segment:  68.6169424871386
     True ECG HR for 10 second segment:  69.90279681368106
     
-
-    C:\Users\imelna\anaconda\envs\emgEnv\AS_Notebooks\Open_data_2024\Peak_Detection_Testing\github_test\svmd_ismail.py:71: RuntimeWarning: divide by zero encountered in double_scalars
-      if np.linalg.norm(new_mode - mode) / np.linalg.norm(mode) < tol:
     
 
 
