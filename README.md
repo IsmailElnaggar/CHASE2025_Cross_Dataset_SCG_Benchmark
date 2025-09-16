@@ -2,7 +2,7 @@
 # Basic Tutorial for the method presented in IEEE/ACM CHASE2025 publication: Cross-Dataset Validation of a Sensor Agnostic Sesimocardiography Peak Detection Method
 
 * In this example we will show how to apply the given method to an SCG signal snippet as an example
-* The full pipeline is applied to a few examples of signals at the end of this example
+* The full pipeline for each dataset can be found in notebook form in the pipeline_notebooks.zip file.
 * Paper link: https://ieeexplore.ieee.org/abstract/document/11121120
 * Citation: I. Elnaggar et al., "Cross-Dataset Validation of a Sensor Agnostic Seismocardiography Peak Detection Method," _2025 IEEE/ACM Conference on Connected Health: Applications, Systems and Engineering Technologies (CHASE)_, New York, NY, USA, 2025, pp. 395-400. doi:10.1145/3721201.3724416.
 * <b> For question/comments please contact Ismail Elnaggar via email: imelna@utu.fi <b>
@@ -356,6 +356,7 @@ for p in ["b001","p014"]:
 # Visual inspection of entire pipeline from input signal to peak detection and heart rate extraction.
 * So from visual inspection, I see that it is working okay, For some signals it's missing some peaks for various reasons and I think this could be maybe improved by feeding the signal in chunks at a time instead of the entire signal at once because of some of the thresholding done to the CWT might minimize some sections of the signal based on energies present earlier or later in the signal.
 * There's lot of room for improvement of this method. The filtering we apply to the CWT could be improved a lot without placing fixed time windows on our signal. I guess that could be a new paper or idea in itself to try to improve upon this method.
+* This is an example of how to use the method described in our paper! Hope you found this tutorial helpful. If you have any additional questions please email Ismail Elnaggar at imelna@utu.fi
 
 
 ```python
