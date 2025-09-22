@@ -30,7 +30,7 @@ from data_parser_ismail import *
 
 
 ```python
-scg_data=data_parser("C:/Users/imelna/anaconda/envs/emgEnv/AS_Notebooks/Open_data_2024/Formatted_Datasets/Formatted_CEBSDB_Data",
+scg_data=data_parser("/home/imelna/data_files/Open_data_2024/Formatted_Datasets/Formatted_CEBSDB_Data",
                       sampling_freq=5000,ecg_key="ECG1",scg_key="Acc_Z")
 ```
 
