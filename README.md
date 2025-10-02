@@ -245,7 +245,7 @@ for p in ["b001","p014"]:
 ![png](images/output_13_2.png)
 
 
-### svmd output observations
+### Output observations
 * We can see here that the mode decomposition and reconstruction of the signal from the modes removes a lot of the extra noise in the signal
 * It looks like we're able to preserve the heart beats, but i'm not 100% sure if we're keeping all the peaks.
 * So best way to test this in this case is to run it on some signals and see if our mean heart rate detected from our peaks are similar to the ground truth heart rates.
