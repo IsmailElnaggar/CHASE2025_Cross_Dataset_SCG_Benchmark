@@ -204,7 +204,7 @@ for p in ["b001","p014"]:
     
     modes = svmd(test_arrz**2, alpha=2000, tol=1e-6,max_iter=10,max_modes=6)
     
-    # Reconstruct AO signal
+    #reconstruct AO signal
     reconstructed_ao = reconstruct_signal(modes, threshold=1.0)
     reconstructed_ao=reconstructed_ao-np.mean(reconstructed_ao)
     reconstructed_ao=signal.sosfiltfilt(sos2,reconstructed_ao,axis=0)
@@ -217,13 +217,13 @@ for p in ["b001","p014"]:
     axes[0].plot(test_arrz, color="blue")
     axes[0].grid(True)
     
-    # Plot each mode in its own subplot
+    #plot each mode in its own subplot
     for i, mode in enumerate(modes):
         axes[i + 1].set_title(f"Mode {i + 1}")
         axes[i + 1].plot(mode, color="orange")
         axes[i + 1].grid(True)
     
-    # Plot reconstructed AO signal
+    #plot reconstructed AO signal
     axes[-1].set_title("Reconstructed AO Signal")
     axes[-1].plot(reconstructed_ao, color="green")
     axes[-1].grid(True)
@@ -287,16 +287,18 @@ for p in ["b001","p014"]:
     test_arrz=my_data-np.mean(my_data)
     test_arrz=signal.sosfiltfilt(sos,test_arrz,axis=0)
     
-    # take 10 second segment
+    #take 10 second segment
     test_arrz=test_arrz[t1:t2]
     
     
     modes = svmd(test_arrz**2, alpha=2000, tol=1e-6,max_iter=10,max_modes=6)
     
-    # Reconstruct AO signal
+    #reconstruct AO signal
     reconstructed_ao = reconstruct_signal(modes, threshold=1.0)
     reconstructed_ao=reconstructed_ao-np.mean(reconstructed_ao)
     reconstructed_ao=signal.sosfiltfilt(sos2,reconstructed_ao,axis=0)
+
+    #apply peak detector function -> this function creates the cwt then produces the envelope signal and the detected peaks from the envelope signal.
     my_envcwt,plocs = ie_peak_detector(reconstructed_ao, Fs, my_scales)
     
     fig, axes = plt.subplots(3, 1, figsize=(10, 6))
