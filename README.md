@@ -298,7 +298,9 @@ for p in ["b001","p014"]:
     reconstructed_ao=reconstructed_ao-np.mean(reconstructed_ao)
     reconstructed_ao=signal.sosfiltfilt(sos2,reconstructed_ao,axis=0)
 
-    #apply peak detector function -> this function creates the cwt then produces the envelope signal and the detected peaks from the envelope signal.
+    #apply peak detector function ->
+    #this function creates the cwt then produces the envelope signal
+    #and the detected peaks from the envelope signal.
     my_envcwt,plocs = ie_peak_detector(reconstructed_ao, Fs, my_scales)
     
     fig, axes = plt.subplots(3, 1, figsize=(10, 6))
