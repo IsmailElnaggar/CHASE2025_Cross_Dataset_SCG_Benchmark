@@ -35,7 +35,7 @@ scg_data=data_parser("/home/SCG/Open_data_2024/Formatted_Datasets/Formatted_CEBS
 ```
 
 ### First we can do a quick visual inspection of a few signals.
-* This will give us an idea of what our SCG signals look like for though who are unfamiliar with this type of biosignal. 
+* This will give us an idea of what our SCG signals look like for those who are unfamiliar with this type of biosignal. 
 
 
 ```python
@@ -99,7 +99,7 @@ for i in ["b001","p014"]:
 * So right away we can see that the SCG Z-axis signal has these periodic waveforms that coincide with the QRS complexes in the ECG signal. We are lucky because these signals are relatively high quality. Evenso because SCG or seismocardiography is measuring chest acceleration we can expect the signal to be much more noisy when compared to ECG.
 
 # Time Frequency Vizualization 
-* I want to do this to try to see the frequency bands where the noise is most dominant and how strong it is relative to the heart beat signal in our SCG. Most of these signals still show some distinct peaks, so i'm thinking that the SCG heart beat features likely occupy separate frequency bands from the noise. But even if the dominant frequencies differ, some overlap or subtle interference may still be present so i need to consider this somehow...
+* I want to do this to try to see the frequency bands where the noise or nonimportant energy is and how strong it is relative to the heart beat signal in our SCG. Most of these signals still show some distinct peaks, so i'm thinking that the SCG heart beat features likely occupy separate frequency bands from the noise. But even if the dominant frequencies differ, some overlap or subtle interference may still be present so i need to consider this somehow...
 * I'm going to do my visualization by applying a continous wavelet transform to the raw signals and then vizualize the spectogram produced by the cwt.
 
 
@@ -166,7 +166,7 @@ for i in ["b001","p014"]:
 
 
 ### Thoughts on visual inspection of spectograms
-* Okay so these are filtered signals, Even though there seems to be some noise in the signals I can still see high frequency energy lines that coincide with the visual peaks in the filtered signal which are our heart beats.
+* Okay so I can see high frequency energy areas that coincide with the visual peaks in the filtered signal which are our heart beats.
 * So i want to apply some techniques that minimize the frequency or energy displayed in the frequency bands that don't represent SCG heart beat complexes.. I'm going to use a type of mode decompisition that is inspired by successive variational mode decomposition (SVMD) that you can apply to a signal so that the signal is decomposed into a set of signals that represent the original signal, these modes will try to capture the periodic "oscillations" which are representing the heart beat complexes in the signal. This decomposition should also in theory not capture the noise in the signal especially this background diffuse noise present throughout the signal.
 * One important downside is the assumption that the noise present in the signal will be mostly separated from the signal. In signals that are very noisy or have motion artifact spikes, this method can fail. This should be considered when deciding to apply this method or some type of motion artifact pre-processing to remove these types of artifacts should be applied to the signals beforehand
 
@@ -246,10 +246,10 @@ for p in ["b001","p014"]:
 
 
 ### Output observations
-* We can see here that the mode decomposition and reconstruction of the signal from the modes removes a lot of the extra noise in the signal
+* We can see here that the reconstruction of the signal from the modes removes a lot of the extra noise in the signal
 * It looks like we're able to preserve the heart beats, but i'm not 100% sure if we're keeping all the peaks.
 * So best way to test this in this case is to run it on some signals and see if our mean heart rate detected from our peaks are similar to the ground truth heart rates.
-* To do the peak detection I'm going to apply a envelope creation method and a peak detection method to extract an envelope and the relevant peaks from the reconstructed signal. This is the second main step of the method. Where we apply a CWT to the output of our decomposition and reconstruction. We will then apply some filtering to our CWT to again produce a 1-d signal. This will be our signal where we actually apply our AMPD based peak detection to. 
+* To do the peak detection I'm going to apply a envelope creation method and a peak detection method to extract an envelope and the relevant peaks from the reconstructed signal. This is the second main step of the method. Where we apply a CWT to the reconstructed signal. We will then apply some filtering to our CWT to again produce a 1-d envelope signal. This will be our signal where we actually apply our AMPD based peak detection to. 
   
 
 # Continious wavelet transform (CWT) based envelope creation and automatic multiscale-based peak detection (AMPD). 
