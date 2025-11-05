@@ -27,7 +27,7 @@ from data_parser_ismail import *
 ```
 
 ### We will import the CEBS dataset as a dictionary resampled to 200 hz for this tutorial. 
-* Note the current .py files in this repository expect the input signal to have a sampling frequency of 200 Hz.
+* Note the current peak detection method .py files in this repository expect the input signal to have a sampling frequency of 200 Hz.
 
 
 ```python
